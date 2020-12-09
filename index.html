@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+
+    .hexagon__container {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .hexagon__item {
+      height: 150px;
+    }
+
+    .hexagon__item--margin-left {
+      margin-left: 100px;
+    }
+    .hexagon__item--margin-right {
+      margin-right: 100px;
+    }
+
+    .hexagon__picture {
+      width: 200px;
+      height: 200px;
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="hexagon__container">
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    <div class="hexagon__item">
+      <img src="./image.jpg" alt="" class="hexagon__picture">
+    </div>
+    
+
+  </div>
+
+  <script>
+    const arr = Array.from(document.querySelectorAll('.hexagon__item'));
+
+    const container = document.querySelector('.hexagon__container');
+
+    // console.log(container.offsetWidth);
+
+    const alignHexagons = () => {
+
+      arr.map((elem) => {
+        elem.classList.remove('hexagon__item--margin-left');
+        elem.classList.remove('hexagon__item--margin-right');
+      });
+
+      const elementsInRow = Math.floor(container.offsetWidth / 200);
+      // console.log('elementsInRow: ', elementsInRow);
+      // console.log('step: ', elementsInRow * 2 - 1);
+      // console.log('');
+      // console.log('arr.length', arr.length);
+      // console.log(elementsInRow * 2 >= arr.length);
+
+      if (elementsInRow <=1) {
+
+      } else if (arr.length <= elementsInRow * 2 && elementsInRow < arr.length) {
+        // console.log('if');
+        arr[elementsInRow].classList.add('hexagon__item--margin-left');
+      } else if (!(elementsInRow >= arr.length)) {
+        // console.log('else');
+        const step = elementsInRow * 2 - 1;
+
+        for (let i = 0; i < arr.length; i += step) {
+          arr[i].classList.add('hexagon__item--margin-left');
+
+          if (arr[i + (elementsInRow - 2)]) {
+            arr[i + (elementsInRow - 2)].classList.add('hexagon__item--margin-right');
+          }
+        }
+      }
+      
+    };
+
+    window.addEventListener('resize', alignHexagons);
+
+    alignHexagons();
+  </script>
+
+</body>
+</html>
